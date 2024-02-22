@@ -8,6 +8,7 @@
 #include "Constants.h"
 #include "subsystems/Elevator.h"
 #include "subsystems/Flywheel.h"
+#include "subsystems/Intake.h"
 
 class SysIdRoutineBot {
  public:
@@ -21,5 +22,6 @@ class SysIdRoutineBot {
       Constants::kDriverControllerPort};
   Elevator m_elevator;
   Flywheel m_flywheel;
+  Intake m_intake;
 };
 #endif
