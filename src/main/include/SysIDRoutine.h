@@ -21,5 +21,6 @@ class SysIdRoutineBot {
       Constants::kDriverControllerPort};
   Elevator m_elevator;
   Flywheel m_flywheel;
+  Intake m_intake;
 };
 #endif

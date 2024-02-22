@@ -26,7 +26,7 @@ class Intake : public frc2::SubsystemBase {
     rev::CANSparkMax m_AnglingMotor{Constants::kIntakeAnglingMotor, rev::CANSparkMax::MotorType::kBrushless};
     rev::SparkAbsoluteEncoder *magEncoder = new rev::SparkAbsoluteEncoder(m_AnglingMotor.GetAbsoluteEncoder(rev::SparkAbsoluteEncoder::Type::kDutyCycle));
 
-    frc2::sysid::SysIdRoutine m_sysIdRoutine{
+    frc2::sysid::SysIdRoutine m_IntakesysIdRoutine{
       frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, std::nullopt},
       frc2::sysid::Mechanism{
           [this](units::volt_t driveVoltage) {
