@@ -3,8 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-#ifndef ELEVATOR_H
-#define ELEVATOR_H
+#ifndef INTAKE_H
+#define INTAKE_H
 #include <frc/Encoder.h>
 #include <frc/RobotController.h>
 #include <frc/controller/PIDController.h>
@@ -16,26 +16,28 @@
 #include <rev/CANSparkMax.h>
 #include "Constants.h"
 
-class Elevator : public frc2::SubsystemBase {
+class Intake : public frc2::SubsystemBase {
  public:
-  Elevator();
+  Intake();
   frc2::CommandPtr SysIdQuasistatic(frc2::sysid::Direction direction);
   frc2::CommandPtr SysIdDynamic(frc2::sysid::Direction direction);
 
   private:
-    rev::CANSparkMax m_ElevatorMotor{Constants::kElevatorMotorUpDownPort, rev::CANSparkMax::MotorType::kBrushless};
-    rev::SparkRelativeEncoder* magEncoder = new rev::SparkRelativeEncoder(m_ElevatorMotor.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor));
+    rev::CANSparkMax m_AnglingMotor{Constants::kIntakeAnglingMotor, rev::CANSparkMax::MotorType::kBrushless};
+    rev::SparkAbsoluteEncoder *magEncoder = new rev::SparkAbsoluteEncoder(m_AnglingMotor.GetAbsoluteEncoder(rev::SparkAbsoluteEncoder::Type::kDutyCycle));
+
     frc2::sysid::SysIdRoutine m_sysIdRoutine{
       frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, std::nullopt},
       frc2::sysid::Mechanism{
           [this](units::volt_t driveVoltage) {
-            m_ElevatorMotor.SetVoltage(driveVoltage);},
+            m_AnglingMotor.SetVoltage(driveVoltage);},
           [this](frc::sysid::SysIdRoutineLog* log) {
-            log->Motor("Elevator Motor")
-                .voltage(m_ElevatorMotor.Get() * frc::RobotController::GetBatteryVoltage())
+            log->Motor("Intake Wrist Motor")
+                .voltage(m_AnglingMotor.Get() * frc::RobotController::GetBatteryVoltage())
                 .position(units::turn_t{magEncoder->GetPosition()})
                 .velocity(units::turns_per_second_t{magEncoder->GetVelocity()});
           },
           this}};
+
 };
 #endif

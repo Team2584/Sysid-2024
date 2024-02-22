@@ -16,6 +16,8 @@
  * they are needed.
  */
 
+#define FLYWHEEL_MAG_ENCODER_OFFSET -0.1525;
+
 namespace Constants {
 
 inline constexpr int kDriverControllerPort = 0;
@@ -23,6 +25,11 @@ inline constexpr int kElevatorMotorUpDownPort = 25;
 inline constexpr int kFlywheelMotor1 = 15;
 inline constexpr int kFlywheelMotor2 = 16;
 inline constexpr int kFlywheelAnglingMotor = 20;
+inline constexpr int kIntakeAnglingMotor = 30;
+
+inline constexpr int kFLTop = 21;
+inline constexpr int kFLbottom = 22;
+
 
 
 

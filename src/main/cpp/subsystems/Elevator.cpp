@@ -8,7 +8,7 @@
 #include <units/voltage.h>
 
 Elevator::Elevator() {
-  
+    
 }
 
 frc2::CommandPtr Elevator::SysIdQuasistatic(frc2::sysid::Direction direction){
