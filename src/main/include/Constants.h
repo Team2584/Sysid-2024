@@ -26,6 +26,7 @@ inline constexpr int kFlywheelMotor1 = 15;
 inline constexpr int kFlywheelMotor2 = 16;
 inline constexpr int kFlywheelAnglingMotor = 20;
 inline constexpr int kIntakeAnglingMotor = 30;
+inline constexpr int kIntakeWrist = 18;
 
 inline constexpr int kFLTop = 21;
 inline constexpr int kFLbottom = 22;
