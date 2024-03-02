@@ -14,6 +14,7 @@
 #include <frc2/command/sysid/SysIdRoutine.h>
 #include <frc2/command/CommandPtr.h>
 #include <rev/CANSparkMax.h>
+#include <rev/CANSparkFlex.h>
 #include "Constants.h"
 
 class Flywheel : public frc2::SubsystemBase {
@@ -27,7 +28,7 @@ class Flywheel : public frc2::SubsystemBase {
   frc2::CommandPtr AnglerSysIdDynamic(frc2::sysid::Direction direction);
 
   private:
-    rev::CANSparkMax m_AnglingMotor{Constants::kFlywheelAnglingMotor, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkFlex m_AnglingMotor{Constants::kFlywheelAnglingMotor, rev::CANSparkMax::MotorType::kBrushless};
     rev::SparkAbsoluteEncoder *magEncoder = new rev::SparkAbsoluteEncoder(m_AnglingMotor.GetAbsoluteEncoder(rev::SparkAbsoluteEncoder::Type::kDutyCycle));
     frc2::sysid::SysIdRoutine m_anglingsysIdRoutine{
       frc2::sysid::Config{std::nullopt, std::nullopt, std::nullopt, std::nullopt},
@@ -42,9 +43,9 @@ class Flywheel : public frc2::SubsystemBase {
           },
           this}};
 
-    rev::CANSparkMax m_TopFW{Constants::kFLTop, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkFlex m_TopFW{Constants::kFlywheelMotor1, rev::CANSparkMax::MotorType::kBrushless};
     rev::SparkRelativeEncoder* fltopenc = new rev::SparkRelativeEncoder(m_TopFW.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor));
-    rev::CANSparkMax m_BottomFW{Constants::kFLbottom, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkFlex m_BottomFW{Constants::kFlywheelMotor2, rev::CANSparkMax::MotorType::kBrushless};
     rev::SparkRelativeEncoder* flbottomenc = new rev::SparkRelativeEncoder(m_BottomFW.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor));
 
     frc2::sysid::SysIdRoutine m_flywheelsysIdRoutine{

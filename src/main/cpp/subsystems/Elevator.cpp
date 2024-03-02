@@ -8,7 +8,7 @@
 #include <units/voltage.h>
 
 Elevator::Elevator() {
-    
+    m_ElevatorMotor.SetIdleMode(rev::CANSparkBase::IdleMode::kBrake);
 }
 
 frc2::CommandPtr Elevator::SysIdQuasistatic(frc2::sysid::Direction direction){
